@@ -2,6 +2,7 @@
 @import 'fonts';
 @import 'mixins';
 @import 'grid';
+@import 'mediaq';
 
 * {
   min-height: 0;
@@ -10,46 +11,50 @@
   margin: 0;
   padding: 0;
 }
-*{
- 
+* {
 }
 // Сетка
 .wrapper {
   display: grid;
-  grid-template-areas: 
-    "menu header header"
-    "menu content content"
-    "menu footer footer";
+  grid-template-areas:
+    'menu header header'
+    'menu content content'
+    'menu footer footer';
   grid-template-rows: 60px 1fr 200px;
   grid-template-columns: 243px 1fr 30%;
   margin: 0;
-  grid-column-gap:0px;
-
+  grid-column-gap: 0px;
+  @include _768 {
+    grid-template-areas:
+      'menu header header'
+      'content content content'
+      'footer footer footer';
+    grid-template-rows: 60px 1fr 100px;
+    grid-template-columns: 243px 1fr 40%;
+  }
 }
-
 
 .header {
-@include gridgenerator($header-bg,header);
-padding: 20px;
+  @include gridgenerator($header-bg, header);
+  padding: 20px;
 }
 .footer {
-  @include gridgenerator($header-bg,footer);
+  @include gridgenerator($header-bg, footer);
   padding: 20px;
 }
 .content {
-@include gridgenerator( #FFFFFF,content);
-padding: 20px;
-
+  @include gridgenerator(#ffffff, content);
+  padding: 20px;
 }
 .menu {
-  @include gridgenerator( #FFFFFF,menu);
+  @include gridgenerator(#ffffff, menu);
   position: fixed;
   overflow: hidden;
   display: block;
-	float: left;
-	width: 100%;
-	max-width: 243px;
-	height: 100%;
+  float: left;
+  width: 100%;
+  max-width: 243px;
+  height: 100%;
 }
 // Конец Сетки
 
@@ -57,106 +62,104 @@ padding: 20px;
   &__nav {
     display: flex;
     margin: 0 -5px;
-    
+
     &__line {
       margin: 0 5px;
       border-left: 1px solid $header-line-color;
       height: 16px;
     }
     &__link {
-      @include headerfont($header-font-size,$main-color);
+      @include headerfont($header-font-size, $main-color);
       margin: 0 5px;
       text-decoration: none;
       text-transform: uppercase;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-
     }
   }
 }
 #active {
-  color:$main-color-active ;
+  color: $main-color-active;
 }
 
 .menu {
-  padding-top: 66px;
-  border: 1px solid #F2F2F2;
+  padding-top: 3px;
+  border: 1px solid #f2f2f2;
+  @include _768 {
+    display: none;
+  }
 
   &__img {
     display: flex;
     justify-content: center;
     cursor: pointer;
   }
-&__nav {
-  padding-left: 12%;
-  padding-top: 25%;
-  padding-bottom: 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
+  &__nav {
+    padding-left: 12%;
+    padding-top: 25%;
+    padding-bottom: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
 
-  border-bottom: 1px solid $main-border-color;
-  &__link {
-    @include headerfont($menu-nav-font-size,$menu-nav-color);
-    text-decoration:none;
-    margin-bottom: 7%;
-  
-  }
-}
- &__btn {
-   display: flex;
-   justify-content: center;
-   padding-top: 40%;
-   padding-bottom: 7%;
-  a {
-    @include button(none, $main-color-green, 15px,4%,5%);
-  }
- }
-&__number {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 8%;
-  border-bottom: 1px solid $main-border-color;
-  &__number{
-    @include headerfont(18px,$main-color);
-  }
-  &__link {
-    a{
-    @include headerfont(13px,$main-color-green);
-      text-decoration:underline;
-
+    border-bottom: 1px solid $main-border-color;
+    &__link {
+      @include headerfont($menu-nav-font-size, $menu-nav-color);
+      text-decoration: none;
+      margin-bottom: 7%;
     }
   }
+  &__btn {
+    display: flex;
+    justify-content: center;
+    padding-top: 40%;
+    padding-bottom: 7%;
+    a {
+      @include button(none, $main-color-green, 15px, 4%, 5%);
+    }
+  }
+  &__number {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 8%;
+    border-bottom: 1px solid $main-border-color;
+    &__number {
+      @include headerfont(18px, $main-color);
+    }
+    &__link {
+      a {
+        @include headerfont(13px, $main-color-green);
+        text-decoration: underline;
+      }
+    }
+  }
+  &__language__block {
+    align-items: center;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $main-border-color;
 
-}
-&__language__block {
-  align-items: center;
-  padding-top: 6%;
-  padding-bottom: 6%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid $main-border-color;
-  
-  &__ru {
-    margin: 0 4%;
-    
-    @include headerfont(18px,$color-lang)
-  }
-  &__eng {
-    margin: 0 4%;
-    @include headerfont(18px,$color-lang)
-  }
-  &__line {
-    margin: 0 4%;
+    &__ru {
+      margin: 0 4%;
+
+      @include headerfont(18px, $color-lang);
+    }
+    &__eng {
+      margin: 0 4%;
+      @include headerfont(18px, $color-lang);
+    }
+    &__line {
+      margin: 0 4%;
       border-left: 1px solid $color-line;
-      height: 16px;  
+      height: 16px;
+    }
   }
-}
-  &__social__block{
+  &__social__block {
     padding-top: 5%;
     padding-bottom: 5%;
     display: flex;
@@ -178,7 +181,6 @@ padding: 20px;
         height: 20px;
       }
     }
-
   }
 }
 .green {
@@ -187,113 +189,123 @@ padding: 20px;
 
 // content
 
-
 .content {
   &__header-text {
     margin-bottom: 2%;
-    @include headerfont($main-color,18px);
+    @include headerfont(18px, $main-color);
     text-transform: uppercase;
     font-weight: bold;
-}
-&__main{
- overflow:hidden;
-  position: relative;
-  width: 100%;
-  &__slider{
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-  
+    @include _1170 {
+      @include headerfont(16px, $main-color);
+      font-weight: bold;
     }
-
+    @include _768 {
+      @include headerfont(14px, $main-color);
+      font-weight: bold;
+    }
+    @include _350 {
+      @include headerfont(10px, $main-color);
+    }
   }
-
-
-  &__header{
-    @include imgTextcenter(800px,40%);
-    @include imgtext($text-color,22px,bold,30px);
-    text-transform: uppercase;
-    line-height: 138%;
-    text-align: center;
-    
-  
-
-  }
-  &__subheader {
-        text-align: center;
-      h3 {
-          @include imgTextcenter(600px,60%);
-        @include imgtext($text-color,15px,normal,22px);
-    
+  &__main {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    &__slider {
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
       }
-  }
-  a {
-    @include button(none, $main-color-green, 15px,15px,10px);
-    @include imgTextcenter(150px,80%);
-    @include imgtext($text-color,13px,normal,18px);
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
+    }
 
-    span {
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      transition: 0.5s;
-      
-    ::after {
-      position: absolute;
-      opacity: 0;
-      top: 0;
-      right: -10px;
-      transition: 0.5s;
+    &__header {
+      @include imgTextcenter(800px, 40%);
+      @include imgtext($text-color, 22px, bold, 30px);
+      text-transform: uppercase;
+      line-height: 138%;
+      text-align: center;
+      @include _768 {
+        @include imgTextcenter(400px, 40%);
+        @include imgtext($text-color, 13px, bold, 10px);
+        line-height: 110%;
+      }
     }
-    }
-    :hover  {
-      padding-right: 15px;
-      color: $main-border-color;
-    }
-    :hover {
-      span {
-        ::after {
-          opacity: 1;
-          right: 0;
+    &__subheader {
+      text-align: center;
+      h3 {
+        @include imgTextcenter(600px, 60%);
+        @include imgtext($text-color, 15px, normal, 22px);
+
+        //media 768
+        @include _768 {
+          visibility: hidden;
         }
       }
     }
-  
-  }
-  
-   
-}
-&__block {
-  
-  display: grid;
-  grid-template-columns:  repeat(3, 1fr);
-  margin-top: 1rem;
+    a {
+      @include button(none, $main-color-green, 15px, 15px, 10px);
+      @include imgTextcenter(150px, 80%);
+      @include imgtext($text-color, 13px, normal, 18px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      @include _768 {
+        @include button(none, $main-color-green, 13px, 5px, 3px);
+      }
 
-  grid-column-gap: 1rem;
-  &__content {
-    position: relative;
+      span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
 
-    img {
-         width: 100%;
-        height: 100%; 
+        ::after {
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -10px;
+          transition: 0.5s;
+        }
       }
       :hover {
-
+        padding-right: 15px;
+        color: $main-border-color;
       }
-    &__text {
-        @include imgTextcenter(32vh,45%);
+      :hover {
+        span {
+          ::after {
+            opacity: 1;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+  &__block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 1rem;
+
+    grid-column-gap: 1rem;
+    &__content {
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      :hover {
+      }
+      &__text {
+        @include imgTextcenter(32vh, 45%);
         align-items: center;
         text-align: center;
-        @include imgtext($text-color,1.9vh,normal,2.53vh);
-      text-transform: uppercase;
-        
+        @include imgtext($text-color, 1.9vh, normal, 2.53vh);
+        text-transform: uppercase;
       }
+    }
   }
-}
   &__corp {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
@@ -302,86 +314,104 @@ padding: 20px;
     &__text {
       text-align: left;
       &__header {
-        @include imgtext($main-color,24px,bold,20px);
+        @include imgtext($main-color, 24px, bold, 20px);
         text-transform: uppercase;
+
+        @include _768 {
+          @include imgtext($main-color, 18px, bold, 18px);
+        }
       }
       &__subheader {
-          padding-top: 5%;
-          padding-bottom: 5%;
-        @include imgtext($main-subcolor,18px,medium,16px);
+        padding-top: 5%;
+        padding-bottom: 5%;
+        @include imgtext($main-subcolor, 18px, medium, 16px);
         text-transform: uppercase;
         text-align: left;
+        @include _768 {
+          @include imgtext($main-subcolor, 12px, medium, 12px);
+        }
       }
       &__article {
-        @include imgtext($main-subcolor,16px,regular,24px);
+        @include imgtext($main-subcolor, 16px, regular, 24px);
         padding-bottom: 5%;
         padding-left: 1%;
+        @include _768 {
+          @include imgtext($main-subcolor, 12px, regular, 12px);
+        }
+        &__sub {
+          @include imgtext($main-subcolor, 16px, regular, 24px);
+          padding-bottom: 5%;
+          padding-left: 1%;
+          @include _768 {
+            display: none;
+          }
+        }
       }
     }
     &__slider {
       width: 100%;
       height: 100%;
 
-
-      &__elem{
+      &__elem {
         position: relative;
-          
+
         &__img {
           width: 100%;
           img {
             width: 100%;
             height: 100%;
           }
-
         }
         &__block {
-          @include imgtext($main-subcolor,16px,regular,24px);
-          @include imgTextcenter(32vh,90%);
-          background-color:$color-lang;
+          @include imgtext($main-subcolor, 16px, regular, 24px);
+          @include imgTextcenter(32vh, 90%);
+          background-color: $color-lang;
           width: 100%;
           height: 19%;
           opacity: 0.85;
           &__header {
-            @include imgtext(#FFFFFF,18px,regular,24px);
+            @include imgtext(#ffffff, 18px, regular, 24px);
             text-transform: uppercase;
             opacity: 1;
             margin-left: 10%;
             margin-right: 20%;
             margin-top: 4%;
             float: left;
-
+            @include _768 {
+              @include imgtext(#ffffff, 12px, regular, 12px);
+            }
           }
           &__text {
-            @include imgtext(#FFFFFF,13px,light,12px);
+            @include imgtext(#ffffff, 12px, light, 12px);
             opacity: 0.7;
             margin-left: 10%;
             margin-right: 20%;
             margin-top: 1%;
             float: left;
             float: left;
+            @include _768 {
+              display: none;
+            }
           }
         }
       }
-
-
-
-
-
-   
-      
     }
   }
   &__video {
     margin-bottom: 11%;
     margin-top: 11%;
     &__header {
-      @include imgtext($main-subcolor,24px,bold,26px);
+      @include imgtext($main-subcolor, 24px, bold, 26px);
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 4%;
     }
     &__video {
       min-height: 500px;
+      @include _768 {
+        margin-left: -3%;
+        margin-right: -3%;
+      }
       iframe {
         width: 100%;
         height: 100vh;
@@ -389,106 +419,99 @@ padding: 20px;
     }
   }
   &__bonus {
-    &__header{
-      @include imgtext($main-subcolor,24px,bold,26px);
+    @include _768 {
+      margin-right: 3%;
+    }
+    &__header {
+      @include imgtext($main-subcolor, 24px, bold, 26px);
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 4%;
-
     }
     &__table {
       display: grid;
       row-gap: 2rem;
-      grid-template-columns:  repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(4, 1fr);
       &__elem {
         position: relative;
         align-self: center;
         justify-self: center;
         display: flex;
+
         &__img {
-          
           margin-top: auto;
           margin-bottom: auto;
-          
         }
-      &__line {
-        height: 5rem;
-        opacity: 0.5;
-        margin-left: 20px;
-        margin-right: 20px;
-        border: 1px solid $grid-color-line;
-      }
-      &__text {
-        
-        @include imgtext($grid-color-text,17px,regular,19px);
-        margin-top: auto;
-        margin-bottom: auto;
-        width: 300px;
-      }
+        &__line {
+          height: 5rem;
+          opacity: 0.5;
+          margin-left: 20px;
+          margin-right: 20px;
+          border: 1px solid $grid-color-line;
+        }
+        &__text {
+          @include imgtext($grid-color-text, 17px, regular, 19px);
+          margin-top: auto;
+          margin-bottom: auto;
+          width: 300px;
+          @include _768 {
+            @include imgtext($grid-color-text, 10px, regular, 10px);
+            width: 130px;
+          }
+        }
       }
     }
   }
-  &__bottom{
-    margin-top:10%;
+  &__bottom {
+    margin-top: 10%;
     margin-bottom: 5%;
+    margin-left: -1%;
     width: 100%;
 
     &__slider {
-    margin-left: 10%;
-    margin-right: 10%;
- 
-    &__elem {
+      margin-left: 10%;
+      margin-right: 10%;
 
-      img {
-        width: 100%;
-        height: 100%;
+      &__elem {
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }
-  }
-}
-
-
-.arrow__left {
-  position: absolute;
-  margin-top:64%;
-  margin-left: 5%;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 1%;
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-  cursor: pointer;
- 
 }
 
 //footer
 .footer {
   background-color: $grid-color-text;
-  @include imgtext(#FFFFFF,15px,regular,18px);
-  
+  @include imgtext(#ffffff, 15px, regular, 18px);
+  @include _768 {
+    @include imgtext(#ffffff, 12px, regular, 12px);
+  }
+
   p {
     opacity: 0.7;
     margin-bottom: 1%;
     margin-left: 2%;
-    margin-top:1%;
+    margin-top: 1%;
   }
   &__text {
     max-width: 35%;
+    @include _768 {
+      max-width: 50%;
+    }
     &__link {
       color: $main-color-green;
-
     }
-    
   }
 }
 
 .arrow__right {
   z-index: 1000;
   position: absolute;
-  margin-top:64%;
+  margin-top: 64%;
   margin-left: 90%;
   border: solid white;
   border-width: 0 3px 3px 0;
@@ -496,44 +519,56 @@ padding: 20px;
   padding: 1%;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
-cursor: pointer;
 
+  cursor: pointer;
 }
-.arrow__place {
+.arrow__left {
+  margin-top: 64%;
+  margin-left: 5%;
   z-index: 1000;
-  position: relative
-}
-.black {
-  color: $grid-color-text;
-}
-.arrow__right__black{
   position: absolute;
-  margin-top: 8%;
-  margin-left: 95%;
-  z-index: 1000;
-  border: solid  $grid-color-text;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 1%;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-cursor: pointer;
 
-}
-.arrow__left__black{
-  position: absolute;
-  margin-top: 8%;
-  margin-left: 3%;
-  z-index: 1000;
-  border: solid  $grid-color-text;
+  border: solid white;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 1%;
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
   cursor: pointer;
-
+}
+.arrow__place {
+  z-index: 1000;
+  position: relative;
+}
+.black {
+  color: $grid-color-text;
+}
+.arrow__right__black {
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 95%;
+  z-index: 1000;
+  border: solid $grid-color-text;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 1%;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  cursor: pointer;
+}
+.arrow__left__black {
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 3%;
+  z-index: 1000;
+  border: solid $grid-color-text;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 1%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  cursor: pointer;
 }
 .arrow__bottom__place {
-  position: relative
+  position: relative;
 }

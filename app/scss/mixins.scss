@@ -1,33 +1,30 @@
-@mixin headerfont ($fontsize,$color) {
+@mixin headerfont($fontsize, $color) {
   font-family: 'Roboto', sans-serif;
 
   font-style: normal;
   font-weight: normal;
   font-size: $fontsize;
   line-height: 102.7%;
-  color:$color;
+  color: $color;
 }
 
-@mixin gridgenerator ($color,$name){
+@mixin gridgenerator($color, $name) {
   grid-area: $name;
   background: $color;
-
-
 }
 
-@mixin imgtext($color,$size,$weight,$lheight) {
-  font-family: 'Roboto',sans-serif;
+@mixin imgtext($color, $size, $weight, $lheight) {
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: $weight;
   color: $color;
   font-size: $size;
   line-height: $lheight;
-
 }
 
-@mixin button ($border,$bgcolor,$fontsize,$btnpadding1,$btnpadding2){
+@mixin button($border, $bgcolor, $fontsize, $btnpadding1, $btnpadding2) {
   font-family: 'Roboto', sans-serif;
-  background-color: $bgcolor; 
+  background-color: $bgcolor;
   border: $border;
   color: white;
   padding: $btnpadding1 $btnpadding2;
@@ -35,10 +32,9 @@
   text-decoration: none;
   display: inline-block;
   font-size: $fontsize;
-  
 }
 
-@mixin imgTextcenter ($width,$top) {
+@mixin imgTextcenter($width, $top) {
   margin: 0;
   position: absolute;
   top: $top;
@@ -46,8 +42,56 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
   width: $width;
-  
 }
 
+// Using
+//.div {
+//   @include _1170 {
+//       @content;
+//   }
+//}
+//media_mixin.scss
+@mixin _1170 {
+  @media (max-width: 1170px) {
+    @content;
+  }
+}
+@mixin _979 {
+  @media (max-width: 979px) {
+    @content;
+  }
+}
+@mixin _768 {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin _600 {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+@mixin _480 {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+@mixin _350 {
+  @media (max-width: 350px) {
+    @content;
+  }
+}
 
-  
+$maxWidth: 1280;
+@mixin adaptiv-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $addMobSize: $addSize + $addSize * 0.7;
+  @media (max-width: 767px) {
+    font-size: calc(
+      #{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth})
+    );
+  }
+  @media (min-width: 767px) {
+    font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+  }
+}
