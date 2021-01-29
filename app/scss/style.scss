@@ -11,8 +11,7 @@
   margin: 0;
   padding: 0;
 }
-* {
-}
+
 // Сетка
 .wrapper {
   display: grid;
@@ -22,7 +21,7 @@
     'menu footer footer';
   grid-template-rows: 60px 1fr 200px;
   grid-template-columns: 243px 1fr 30%;
-  margin: ;
+
   grid-column-gap: 0px;
   @include _768 {
     grid-template-areas:
@@ -37,14 +36,17 @@
 .header {
   @include gridgenerator($header-bg, header);
   padding: 20px;
+  width: 100%;
 }
 .footer {
   @include gridgenerator($header-bg, footer);
   padding: 20px;
+  width: 100%;
 }
 .content {
   @include gridgenerator(#ffffff, content);
   padding: 20px;
+  width: 100%;
 }
 .menu {
   @include gridgenerator(#ffffff, menu);
@@ -309,7 +311,10 @@
   &__corp {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
-    margin-top: 10rem;
+    margin-top: 15%;
+    @include _768 {
+      margin-top: 10%;
+    }
     grid-column-gap: 1rem;
     &__text {
       text-align: left;
