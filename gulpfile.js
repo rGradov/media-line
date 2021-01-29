@@ -87,7 +87,7 @@ function build() {
         'app/js/main.min.js',
         'app/*.html'
     ],{base:'app'})
-    .pipe(dest('dist'))
+    .pipe(dest('docs'))
     
 }
 

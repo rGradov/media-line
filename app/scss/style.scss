@@ -22,7 +22,7 @@
     'menu footer footer';
   grid-template-rows: 60px 1fr 200px;
   grid-template-columns: 243px 1fr 30%;
-  margin: 0;
+  margin: ;
   grid-column-gap: 0px;
   @include _768 {
     grid-template-areas:
