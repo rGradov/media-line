@@ -3,7 +3,7 @@
 @import 'mixins';
 @import 'grid';
 @import 'mediaq';
-
+@import 'normolize';
 * {
   min-height: 0;
   min-width: 0;
@@ -19,8 +19,9 @@
     'menu header header'
     'menu content content'
     'menu footer footer';
-  grid-template-rows: 60px 1fr 200px;
-  grid-template-columns: 243px 1fr 30%;
+  grid-template-rows: 0.15fr 10fr 0.4fr;
+  grid-template-columns: 1fr 3fr 2fr;
+  max-width: 100%;
 
   grid-column-gap: 0px;
   @include _768 {
@@ -28,8 +29,8 @@
       'menu header header'
       'content content content'
       'footer footer footer';
-    grid-template-rows: 60px 1fr 100px;
-    grid-template-columns: 243px 1fr 40%;
+    grid-template-rows: 0.15fr 10fr 0.4fr;
+    grid-template-columns: 1fr 3fr 2fr;
   }
 }
 
@@ -37,16 +38,19 @@
   @include gridgenerator($header-bg, header);
   padding: 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 .footer {
   @include gridgenerator($header-bg, footer);
   padding: 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 .content {
   @include gridgenerator(#ffffff, content);
   padding: 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 .menu {
   @include gridgenerator(#ffffff, menu);
@@ -55,8 +59,9 @@
   display: block;
   float: left;
   width: 100%;
-  max-width: 243px;
+  max-width: 16.62%;
   height: 100%;
+  box-sizing: border-box;
 }
 // Конец Сетки
 
@@ -159,6 +164,7 @@
       margin: 0 4%;
       border-left: 1px solid $color-line;
       height: 16px;
+      box-sizing: border-box;
     }
   }
   &__social__block {
@@ -174,10 +180,12 @@
       &__img {
         width: 20px;
         height: 20px;
+        box-sizing: border-box;
       }
     }
     &__inst {
       margin: 0 6%;
+
       &__img {
         width: 20px;
         height: 20px;
@@ -317,19 +325,23 @@
     }
     grid-column-gap: 1rem;
     &__text {
+      overflow: hidden;
       text-align: left;
       &__header {
         @include imgtext($main-color, 24px, bold, 20px);
         text-transform: uppercase;
 
         @include _768 {
-          @include imgtext($main-color, 18px, bold, 18px);
+          @include imgtext($main-color, 16px, bold, 20px);
+        }
+        @include _350 {
+          @include imgtext($main-color, 12px, bold, 12px);
         }
       }
       &__subheader {
         padding-top: 5%;
         padding-bottom: 5%;
-        @include imgtext($main-subcolor, 18px, medium, 16px);
+        @include imgtext($main-subcolor, 14px, medium, 16px);
         text-transform: uppercase;
         text-align: left;
         @include _768 {
@@ -405,6 +417,8 @@
   &__video {
     margin-bottom: 11%;
     margin-top: 11%;
+    box-sizing: border-box;
+
     &__header {
       @include imgtext($main-subcolor, 24px, bold, 26px);
       text-transform: uppercase;
@@ -412,14 +426,18 @@
       margin-bottom: 4%;
     }
     &__video {
-      min-height: 500px;
+      box-sizing: border-box;
       @include _768 {
-        margin-left: -3%;
-        margin-right: -3%;
       }
       iframe {
         width: 100%;
         height: 100vh;
+        @include _768 {
+          height: 50vh;
+        }
+        @include _350 {
+          height: 40vh;
+        }
       }
     }
   }
@@ -432,37 +450,69 @@
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 4%;
+      @include _350 {
+        @include imgtext($main-subcolor, 20px, bold, 26px);
+      }
     }
     &__table {
       display: grid;
       row-gap: 2rem;
+      column-gap: 2rem;
+      box-sizing: border-box;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(4, 1fr);
+      @include _350 {
+        grid-template-rows: repeat(4, 1fr);
+      }
+      @include _768 {
+        row-gap: 1rem;
+        column-gap: 1rem;
+      }
+
       &__elem {
         position: relative;
         align-self: center;
-        justify-self: center;
         display: flex;
+        margin-right: 2%;
+        overflow: hidden;
+        @include _768 {
+        }
 
         &__img {
           margin-top: auto;
           margin-bottom: auto;
+          margin-left: auto;
+          @include _768 {
+          }
+          img {
+            width: 70%;
+            height: 70%;
+          }
         }
         &__line {
           height: 5rem;
           opacity: 0.5;
-          margin-left: 20px;
-          margin-right: 20px;
+
+          box-sizing: border-box;
           border: 1px solid $grid-color-line;
+          @include _768 {
+            height: 3rem;
+          }
+          @include _350 {
+            height: 2rem;
+          }
         }
         &__text {
           @include imgtext($grid-color-text, 17px, regular, 19px);
           margin-top: auto;
           margin-bottom: auto;
-          width: 300px;
+          margin-left: 5%;
+          width: 70%;
           @include _768 {
             @include imgtext($grid-color-text, 10px, regular, 10px);
-            width: 130px;
+          }
+          @include _350 {
+            @include imgtext($grid-color-text, 6px, regular, 8px);
           }
         }
       }
@@ -471,7 +521,6 @@
   &__bottom {
     margin-top: 10%;
     margin-bottom: 5%;
-    margin-left: -1%;
     width: 100%;
 
     &__slider {
@@ -491,22 +540,18 @@
 //footer
 .footer {
   background-color: $grid-color-text;
-  @include imgtext(#ffffff, 15px, regular, 18px);
-  @include _768 {
-    @include imgtext(#ffffff, 12px, regular, 12px);
+  &__text {
+    box-sizing: border-box;
+    @include imgtext(#ffffff, 16px, medium, 18px);
   }
 
   p {
     opacity: 0.7;
-    margin-bottom: 1%;
-    margin-left: 2%;
-    margin-top: 1%;
   }
   &__text {
-    max-width: 35%;
-    @include _768 {
-      max-width: 50%;
-    }
+    max-width: 40%;
+    padding-bottom: 10px;
+
     &__link {
       color: $main-color-green;
     }
@@ -576,4 +621,11 @@
 }
 .arrow__bottom__place {
   position: relative;
+}
+.footer__text {
+  @include _350 {
+    @include imgtext(#ffffff, 8px, medium, 8px);
+    max-width: 100%;
+    padding: 0;
+  }
 }
