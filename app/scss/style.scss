@@ -101,9 +101,9 @@
     cursor: pointer;
   }
   &__nav {
+    box-sizing: border-box;
     padding-left: 12%;
-    padding-top: 25%;
-    padding-bottom: 20%;
+    padding-top: 12%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,10 +119,10 @@
   &__btn {
     display: flex;
     justify-content: center;
-    padding-top: 40%;
     padding-bottom: 7%;
+    padding-top: 10%;
     a {
-      @include button(none, $main-color-green, 15px, 4%, 5%);
+      @include button(none, $main-color-green, 12px, 10px, 5px);
     }
   }
   &__number {
@@ -542,7 +542,13 @@
   background-color: $grid-color-text;
   &__text {
     box-sizing: border-box;
-    @include imgtext(#ffffff, 16px, medium, 18px);
+    @include imgtext(#ffffff, 14px, medium, 18px);
+    @include _768 {
+      @include imgtext(#ffffff, 9px, medium, 3px);
+    }
+    @include _480 {
+      visibility: hidden;
+    }
   }
 
   p {
@@ -623,9 +629,21 @@
   position: relative;
 }
 .footer__text {
+  display: inline;
+
   @include _350 {
     @include imgtext(#ffffff, 8px, medium, 8px);
     max-width: 100%;
+    padding: 0;
+  }
+  @include _480 {
+    @include imgtext(#ffffff, 9px, medium, 8px);
+    max-width: 60%;
+    padding: 0;
+  }
+  @include _600 {
+    @include imgtext(#ffffff, 9px, medium, 8px);
+    max-width: 70%;
     padding: 0;
   }
 }
