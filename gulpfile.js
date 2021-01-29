@@ -28,7 +28,7 @@ function img() {
             ]
         })
     ]))
-    .pipe(dest('dist/img'))
+    .pipe(dest('docs/img'))
 }
 
 function scripts( ) {
