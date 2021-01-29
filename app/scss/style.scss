@@ -1,0 +1,539 @@
+@import 'variables';
+@import 'fonts';
+@import 'mixins';
+@import 'grid';
+
+* {
+  min-height: 0;
+  min-width: 0;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+*{
+ 
+}
+// Сетка
+.wrapper {
+  display: grid;
+  grid-template-areas: 
+    "menu header header"
+    "menu content content"
+    "menu footer footer";
+  grid-template-rows: 60px 1fr 200px;
+  grid-template-columns: 243px 1fr 30%;
+  margin: 0;
+  grid-column-gap:0px;
+
+}
+
+
+.header {
+@include gridgenerator($header-bg,header);
+padding: 20px;
+}
+.footer {
+  @include gridgenerator($header-bg,footer);
+  padding: 20px;
+}
+.content {
+@include gridgenerator( #FFFFFF,content);
+padding: 20px;
+
+}
+.menu {
+  @include gridgenerator( #FFFFFF,menu);
+  position: fixed;
+  overflow: hidden;
+  display: block;
+	float: left;
+	width: 100%;
+	max-width: 243px;
+	height: 100%;
+}
+// Конец Сетки
+
+.header {
+  &__nav {
+    display: flex;
+    margin: 0 -5px;
+    
+    &__line {
+      margin: 0 5px;
+      border-left: 1px solid $header-line-color;
+      height: 16px;
+    }
+    &__link {
+      @include headerfont($header-font-size,$main-color);
+      margin: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+    }
+  }
+}
+#active {
+  color:$main-color-active ;
+}
+
+.menu {
+  padding-top: 66px;
+  border: 1px solid #F2F2F2;
+
+  &__img {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+&__nav {
+  padding-left: 12%;
+  padding-top: 25%;
+  padding-bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+
+  border-bottom: 1px solid $main-border-color;
+  &__link {
+    @include headerfont($menu-nav-font-size,$menu-nav-color);
+    text-decoration:none;
+    margin-bottom: 7%;
+  
+  }
+}
+ &__btn {
+   display: flex;
+   justify-content: center;
+   padding-top: 40%;
+   padding-bottom: 7%;
+  a {
+    @include button(none, $main-color-green, 15px,4%,5%);
+  }
+ }
+&__number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 8%;
+  border-bottom: 1px solid $main-border-color;
+  &__number{
+    @include headerfont(18px,$main-color);
+  }
+  &__link {
+    a{
+    @include headerfont(13px,$main-color-green);
+      text-decoration:underline;
+
+    }
+  }
+
+}
+&__language__block {
+  align-items: center;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid $main-border-color;
+  
+  &__ru {
+    margin: 0 4%;
+    
+    @include headerfont(18px,$color-lang)
+  }
+  &__eng {
+    margin: 0 4%;
+    @include headerfont(18px,$color-lang)
+  }
+  &__line {
+    margin: 0 4%;
+      border-left: 1px solid $color-line;
+      height: 16px;  
+  }
+}
+  &__social__block{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -4%;
+    border-bottom: 1px solid $main-border-color;
+    &__facebook {
+      margin: 0 4%;
+      &__img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &__inst {
+      margin: 0 6%;
+      &__img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+  }
+}
+.green {
+  color: $main-color-green;
+}
+
+// content
+
+
+.content {
+  &__header-text {
+    margin-bottom: 2%;
+    @include headerfont($main-color,18px);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+&__main{
+ overflow:hidden;
+  position: relative;
+  width: 100%;
+  &__slider{
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+  
+    }
+
+  }
+
+
+  &__header{
+    @include imgTextcenter(800px,40%);
+    @include imgtext($text-color,22px,bold,30px);
+    text-transform: uppercase;
+    line-height: 138%;
+    text-align: center;
+    
+  
+
+  }
+  &__subheader {
+        text-align: center;
+      h3 {
+          @include imgTextcenter(600px,60%);
+        @include imgtext($text-color,15px,normal,22px);
+    
+      }
+  }
+  a {
+    @include button(none, $main-color-green, 15px,15px,10px);
+    @include imgTextcenter(150px,80%);
+    @include imgtext($text-color,13px,normal,18px);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+
+    span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+      
+    ::after {
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -10px;
+      transition: 0.5s;
+    }
+    }
+    :hover  {
+      padding-right: 15px;
+      color: $main-border-color;
+    }
+    :hover {
+      span {
+        ::after {
+          opacity: 1;
+          right: 0;
+        }
+      }
+    }
+  
+  }
+  
+   
+}
+&__block {
+  
+  display: grid;
+  grid-template-columns:  repeat(3, 1fr);
+  margin-top: 1rem;
+
+  grid-column-gap: 1rem;
+  &__content {
+    position: relative;
+
+    img {
+         width: 100%;
+        height: 100%; 
+      }
+      :hover {
+
+      }
+    &__text {
+        @include imgTextcenter(32vh,45%);
+        align-items: center;
+        text-align: center;
+        @include imgtext($text-color,1.9vh,normal,2.53vh);
+      text-transform: uppercase;
+        
+      }
+  }
+}
+  &__corp {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    margin-top: 10rem;
+    grid-column-gap: 1rem;
+    &__text {
+      text-align: left;
+      &__header {
+        @include imgtext($main-color,24px,bold,20px);
+        text-transform: uppercase;
+      }
+      &__subheader {
+          padding-top: 5%;
+          padding-bottom: 5%;
+        @include imgtext($main-subcolor,18px,medium,16px);
+        text-transform: uppercase;
+        text-align: left;
+      }
+      &__article {
+        @include imgtext($main-subcolor,16px,regular,24px);
+        padding-bottom: 5%;
+        padding-left: 1%;
+      }
+    }
+    &__slider {
+      width: 100%;
+      height: 100%;
+
+
+      &__elem{
+        position: relative;
+          
+        &__img {
+          width: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+
+        }
+        &__block {
+          @include imgtext($main-subcolor,16px,regular,24px);
+          @include imgTextcenter(32vh,90%);
+          background-color:$color-lang;
+          width: 100%;
+          height: 19%;
+          opacity: 0.85;
+          &__header {
+            @include imgtext(#FFFFFF,18px,regular,24px);
+            text-transform: uppercase;
+            opacity: 1;
+            margin-left: 10%;
+            margin-right: 20%;
+            margin-top: 4%;
+            float: left;
+
+          }
+          &__text {
+            @include imgtext(#FFFFFF,13px,light,12px);
+            opacity: 0.7;
+            margin-left: 10%;
+            margin-right: 20%;
+            margin-top: 1%;
+            float: left;
+            float: left;
+          }
+        }
+      }
+
+
+
+
+
+   
+      
+    }
+  }
+  &__video {
+    margin-bottom: 11%;
+    margin-top: 11%;
+    &__header {
+      @include imgtext($main-subcolor,24px,bold,26px);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 4%;
+    }
+    &__video {
+      min-height: 500px;
+      iframe {
+        width: 100%;
+        height: 100vh;
+      }
+    }
+  }
+  &__bonus {
+    &__header{
+      @include imgtext($main-subcolor,24px,bold,26px);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 4%;
+
+    }
+    &__table {
+      display: grid;
+      row-gap: 2rem;
+      grid-template-columns:  repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      &__elem {
+        position: relative;
+        align-self: center;
+        justify-self: center;
+        display: flex;
+        &__img {
+          
+          margin-top: auto;
+          margin-bottom: auto;
+          
+        }
+      &__line {
+        height: 5rem;
+        opacity: 0.5;
+        margin-left: 20px;
+        margin-right: 20px;
+        border: 1px solid $grid-color-line;
+      }
+      &__text {
+        
+        @include imgtext($grid-color-text,17px,regular,19px);
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 300px;
+      }
+      }
+    }
+  }
+  &__bottom{
+    margin-top:10%;
+    margin-bottom: 5%;
+    width: 100%;
+
+    &__slider {
+    margin-left: 10%;
+    margin-right: 10%;
+ 
+    &__elem {
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  }
+}
+
+
+.arrow__left {
+  position: absolute;
+  margin-top:64%;
+  margin-left: 5%;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 1%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  cursor: pointer;
+ 
+}
+
+//footer
+.footer {
+  background-color: $grid-color-text;
+  @include imgtext(#FFFFFF,15px,regular,18px);
+  
+  p {
+    opacity: 0.7;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-top:1%;
+  }
+  &__text {
+    max-width: 35%;
+    &__link {
+      color: $main-color-green;
+
+    }
+    
+  }
+}
+
+.arrow__right {
+  z-index: 1000;
+  position: absolute;
+  margin-top:64%;
+  margin-left: 90%;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 1%;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+cursor: pointer;
+
+}
+.arrow__place {
+  z-index: 1000;
+  position: relative
+}
+.black {
+  color: $grid-color-text;
+}
+.arrow__right__black{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 95%;
+  z-index: 1000;
+  border: solid  $grid-color-text;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 1%;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+cursor: pointer;
+
+}
+.arrow__left__black{
+  position: absolute;
+  margin-top: 8%;
+  margin-left: 3%;
+  z-index: 1000;
+  border: solid  $grid-color-text;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 1%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  cursor: pointer;
+
+}
+.arrow__bottom__place {
+  position: relative
+}

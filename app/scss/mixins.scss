@@ -1,0 +1,53 @@
+@mixin headerfont ($fontsize,$color) {
+  font-family: 'Roboto', sans-serif;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: $fontsize;
+  line-height: 102.7%;
+  color:$color;
+}
+
+@mixin gridgenerator ($color,$name){
+  grid-area: $name;
+  background: $color;
+
+
+}
+
+@mixin imgtext($color,$size,$weight,$lheight) {
+  font-family: 'Roboto',sans-serif;
+  font-style: normal;
+  font-weight: $weight;
+  color: $color;
+  font-size: $size;
+  line-height: $lheight;
+
+}
+
+@mixin button ($border,$bgcolor,$fontsize,$btnpadding1,$btnpadding2){
+  font-family: 'Roboto', sans-serif;
+  background-color: $bgcolor; 
+  border: $border;
+  color: white;
+  padding: $btnpadding1 $btnpadding2;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: $fontsize;
+  
+}
+
+@mixin imgTextcenter ($width,$top) {
+  margin: 0;
+  position: absolute;
+  top: $top;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: $width;
+  
+}
+
+
+  
