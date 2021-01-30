@@ -1,5 +1,7 @@
-# gulptemplate
+# Media-line макет
 
-О компании Карьера Проекты Арендаторам Карта лояльности Пресс-центр Контакты
-"# media-line" 
-"# media-line" 
+### Tech
+
+- [scss]
+- [jquery]
+- [slick slider]
