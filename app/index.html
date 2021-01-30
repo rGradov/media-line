@@ -10,6 +10,7 @@
  <div class="wrapper">
    <header class="header">
     <div class="header__nav">
+    
         <a class="header__nav__link" href="#">Главная</a>
         <div class="header__nav__line">
         </div>
@@ -263,9 +264,45 @@
         </div>
     </div>
     </div>
-   
+    <nav role="navigation">
+        <div id="menuToggle">
+          <!--
+          A fake / hidden checkbox is used as click reciever,
+          so you can use the :checked selector on it.
+          -->
+          <input type="checkbox" />
+          
+          <!--
+          Some spans to act as a hamburger.
+          
+          They are acting like a real hamburger,
+          not that McDonalds stuff.
+          -->
+          <span></span>
+          <span></span>
+          <span></span>
+          
+          <!--
+          Too bad the menu has to be inside of the button
+          but hey, it's pure CSS magic.
+          -->
+          <ul id="menu">
+            <nav class="menu__nav">
+                <a  class="menu__nav__link" href="#">О компании</a>
+                <a  class="menu__nav__link"  id="active" href="#">Проекты </a>
+                <a  class="menu__nav__link"  href="#">Арендаторам</a>
+                <a  class="menu__nav__link"  href="#">Карта лояльности</a>
+                <a  class="menu__nav__link"  href="#">Пресс-центр</a>
+                <a  class="menu__nav__link"  href="#">Контакты</a>
+                <a  id="hamb__btn"href="">Предложить земельный участок</a>
+            </nav>
+          
+            
+          </ul>
+        </div>
+      </nav>
    <div class="menu">
-    <div class="menu-trigger"></div>
+
     
       <div class="menu__img">
         <img class="menu__img__logo" src="./img/logo.jpg" alt="logo">

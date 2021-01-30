@@ -607,18 +607,13 @@
   &__text {
     box-sizing: border-box;
     @include imgtext(#ffffff, 14px, medium, 18px);
-    @include _768 {
-      @include imgtext(#ffffff, 9px, medium, 3px);
-    }
-    @include _480 {
-    }
   }
 
   p {
     opacity: 0.7;
   }
   &__text {
-    max-width: 40%;
+    max-width: 70%;
     padding-bottom: 10px;
 
     &__link {
@@ -692,9 +687,148 @@
   position: relative;
 }
 .footer__text {
+  @include _768 {
+    @include imgtext(#ffffff, 9px, normal, 12px);
+    max-width: 80%;
+    padding: 0;
+  }
+  @include _600 {
+    @include imgtext(#ffffff, 9px, normal, 12px);
+    max-width: 70%;
+    padding: 0;
+  }
   @include _480 {
     @include imgtext(#ffffff, 9px, normal, 8px);
     max-width: 60%;
     padding: 0;
   }
+}
+
+#hamb__btn {
+  @include button(none, $main-color-green, 15px, 10px, 3px);
+  color: white;
+}
+
+#menuToggle {
+  display: none;
+  position: relative;
+  top: 15%;
+  left: 15%;
+
+  z-index: 1;
+
+  -webkit-user-select: none;
+  user-select: none;
+  @include _768 {
+    display: block;
+    top: 25%;
+    left: 40%;
+  }
+  @include _600 {
+    display: block;
+    top: 25%;
+    left: 30%;
+  }
+  @include _480 {
+    display: block;
+    top: 25%;
+    left: 25%;
+  }
+  @include _350 {
+    display: block;
+  }
+}
+
+#menuToggle {
+  a {
+    transition: color 0.3s ease;
+  }
+  :hover {
+    color: $main-color-active;
+  }
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer;
+
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+
+  -webkit-touch-callout: none;
+}
+
+#menuToggle {
+  span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #cdcdcd; //humb button
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+    @include _350 {
+    }
+  }
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #cdcdcd;
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+
+  background: #ffffff;
+
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+}
+
+#menuToggle input:checked ~ ul {
+  transform: none;
 }

@@ -44,13 +44,6 @@
   width: $width;
 }
 
-// Using
-//.div {
-//   @include _1170 {
-//       @content;
-//   }
-//}
-//media_mixin.scss
 @mixin _1170 {
   @media (max-width: 1170px) {
     @content;
