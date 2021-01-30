@@ -2,6 +2,6 @@
 
 ### Tech
 
-- scss
-- jquery
-- slick slider
+- ## scss
+- ## jquery
+- ## slick slider
