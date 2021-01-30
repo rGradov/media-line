@@ -93,6 +93,7 @@
   border: 1px solid #f2f2f2;
   @include _768 {
     display: none;
+    border: none;
   }
 
   &__img {
@@ -110,6 +111,9 @@
     text-align: left;
 
     border-bottom: 1px solid $main-border-color;
+    @include _768 {
+      border-bottom: 0px solid $main-border-color;
+    }
     outline-offset: -1px;
     &__link {
       @include headerfont($menu-nav-font-size, $menu-nav-color);
@@ -279,13 +283,21 @@
       text-transform: uppercase;
       line-height: 138%;
       text-align: center;
+      @include _979 {
+        @include imgTextcenter(600px, 40%);
+        @include imgtext($text-color, 14px, bold, 10px);
+        line-height: 120%;
+      }
       @include _768 {
         @include imgTextcenter(400px, 40%);
-        @include imgtext($text-color, 13px, bold, 10px);
+        @include imgtext($text-color, 12px, bold, 10px);
         line-height: 110%;
       }
+      @include _600 {
+        @include imgTextcenter(400px, 50%);
+      }
       @include _480 {
-        @include imgTextcenter(300px, 40%);
+        @include imgTextcenter(300px, 50%);
         @include imgtext($text-color, 10px, bold, 10px);
         line-height: 110%;
       }
@@ -295,9 +307,17 @@
       h3 {
         @include imgTextcenter(600px, 60%);
         @include imgtext($text-color, 15px, normal, 22px);
-
+        @include _979 {
+          @include imgTextcenter(400px, 60%);
+          @include imgtext($text-color, 10px, normal, 12px);
+        }
         //media 768
         @include _768 {
+          // visibility: hidden;
+          @include imgTextcenter(400px, 60%);
+          @include imgtext($text-color, 10px, normal, 12px);
+        }
+        @include _600 {
           visibility: hidden;
         }
         ::after {
@@ -375,8 +395,20 @@
         @include imgTextcenter(90%, 45%);
         align-items: center;
         text-align: center;
-        @include imgtext($text-color, 10px, normal, 15px);
+        @include imgtext($text-color, 20px, normal, 20px);
         text-transform: uppercase;
+        @include _979 {
+          @include imgtext($text-color, 15px, normal, 15px);
+        }
+        @include _768 {
+          @include imgtext($text-color, 10px, normal, 13px);
+        }
+        @include _480 {
+          @include imgtext($text-color, 10px, bold, 10px);
+        }
+        @include _350 {
+          @include imgtext($text-color, 9px, bold, 9px);
+        }
       }
     }
   }
@@ -451,6 +483,7 @@
           height: 19%;
           opacity: 0.85;
           &__header {
+            display: inline;
             @include imgtext(#ffffff, 18px, regular, 24px);
             text-transform: uppercase;
             opacity: 1;
@@ -458,8 +491,18 @@
             margin-right: 20%;
             margin-top: 4%;
             float: left;
+            @include _1170 {
+              @include imgtext(#ffffff, 15px, regular, 10px);
+            }
+            @include _979 {
+              @include imgtext(#ffffff, 10px, regular, 10px);
+            }
             @include _768 {
               @include imgtext(#ffffff, 12px, regular, 12px);
+            }
+            @include _480 {
+              @include imgtext(#ffffff, 8px, regular, 10px);
+              margin-top: 3%;
             }
           }
           &__text {
@@ -470,8 +513,18 @@
             margin-top: 1%;
             float: left;
             float: left;
+            @include _1170 {
+              display: inline;
+              @include imgtext(#ffffff, 12px, light, 12px);
+            }
+            @include _979 {
+              @include imgtext(#ffffff, 7px, light, 8px);
+            }
             @include _768 {
-              display: none;
+              @include imgtext(#ffffff, 8px, light, 8px);
+            }
+            @include _480 {
+              visibility: hidden;
             }
           }
         }
@@ -488,6 +541,9 @@
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 4%;
+      p {
+        display: inline;
+      }
     }
     &__video {
       box-sizing: border-box;
@@ -514,6 +570,9 @@
       text-transform: uppercase;
       text-align: center;
       margin-bottom: 4%;
+      p {
+        display: inline;
+      }
       @include _350 {
         @include imgtext($main-subcolor, 20px, bold, 26px);
       }
@@ -607,6 +666,7 @@
   &__text {
     box-sizing: border-box;
     @include imgtext(#ffffff, 14px, medium, 18px);
+    max-width: 70%;
   }
 
   p {
@@ -693,13 +753,13 @@
     padding: 0;
   }
   @include _600 {
-    @include imgtext(#ffffff, 9px, normal, 12px);
+    @include imgtext(#ffffff, 9px, normal, 9px);
     max-width: 70%;
     padding: 0;
   }
   @include _480 {
     @include imgtext(#ffffff, 9px, normal, 8px);
-    max-width: 60%;
+    max-width: 65%;
     padding: 0;
   }
 }
@@ -812,6 +872,10 @@
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
+
+  @include _350 {
+    width: 250px;
+  }
 
   background: #ffffff;
 
