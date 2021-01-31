@@ -6,6 +6,7 @@ const uglify =require('gulp-uglify-es').default;
 const autoprefixer =require('gulp-autoprefixer')
 const imagemin = require('gulp-imagemin')
 const del = require('del')
+const pug = require('gulp-pug')
 
 function browsersync() {
   browserSync.init({
@@ -14,6 +15,8 @@ function browsersync() {
       }
   });
 }
+
+
 
 function img() {
     return src('app/img/**/*')
@@ -28,8 +31,9 @@ function img() {
             ]
         })
     ]))
-    .pipe(dest('docs/img'))
+    .pipe(dest('/'))
 }
+
 
 function scripts( ) {
     return src([
@@ -45,7 +49,7 @@ function scripts( ) {
 }
 
 function cleanDist() {
-    return del('dist')
+    return del('docs')
 }
 
 function mixinScss() {
@@ -74,9 +78,23 @@ function styles() {
           .pipe(dest('app/css'))
           .pipe(browserSync.stream())
 }
+
+// pug setings
+function devHtml() {
+    return src('app/index.pug')
+    .pipe(pug({
+        pretty:true,
+    }))
+    .pipe(concat('index.html'))
+    .pipe(dest('app'))
+    .pipe(browserSync.stream())  
+}
+
+
 function watching() {
     watch(['app/scss/**/*.scss'], styles)
     watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts)
+    watch(['app/*.pug'], devHtml)
     watch(['app/*.html']).on('change',browserSync.reload);
 }
 
@@ -96,8 +114,9 @@ exports.styles = styles;
 exports.watching = watching;
 exports.browsersync = browsersync;
 exports.scripts = scripts;
-exports.build =series(cleanDist,img,build);
+exports.build =series(cleanDist,build);
 exports.img = img;
 exports.clean =cleanDist;
 exports.mixinstyle = mixinScss;
-exports.default = parallel(styles,scripts,browsersync, watching)
+exports.devHtml = devHtml;
+exports.default = parallel(styles,scripts,browsersync,devHtml, watching)

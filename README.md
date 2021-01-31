@@ -2,6 +2,7 @@
 
 ### Tech
 
+- #### pug
 - #### scss
 - #### jquery
 - #### slick slider

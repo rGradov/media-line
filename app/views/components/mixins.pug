@@ -1,0 +1,25 @@
+//declaration mixin's
+mixin block_content(src,text)
+          .content__block__content
+            img(src=src)
+            h3.content__block__content__text= text
+//new mixin's slider elem
+mixin content__corp__slider__elem(src,header,text)
+  .content__corp__slider__elem
+    .content__corp__slider__elem__img
+      img(src=src)
+    .content__corp__slider__elem__block
+      .content__corp__slider__elem__block__header= header
+      .content__corp__slider__elem__block__text= text
+
+//mixin's table
+mixin table__elem(src,text)
+  .content__bonus__table__elem
+    .content__bonus__table__elem__img
+      img(src=src)
+    .content__bonus__table__elem__line
+    .content__bonus__table__elem__text
+      p= text
+mixin slider__elem(src)
+  .content__bottom__slider__elem
+    img(src=src)
