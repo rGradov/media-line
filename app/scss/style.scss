@@ -395,6 +395,7 @@
       position: relative;
       display: inline-block;
       overflow: hidden;
+      transition: 1s;
 
       img {
         width: 100%;
@@ -402,14 +403,18 @@
         transition: 1s;
       }
       :hover {
-        transform: scale(1.05);
       }
       &__text {
-        @include imgTextcenter(90%, 45%);
+        margin: 0;
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        width: 65%;
         align-items: center;
         text-align: center;
-        @include imgtext($text-color, 20px, normal, 20px);
+        @include imgtext($text-color, 18px, normal, 20px);
         text-transform: uppercase;
+
         @include _979 {
           @include imgtext($text-color, 15px, normal, 15px);
         }
@@ -423,6 +428,9 @@
           @include imgtext($text-color, 9px, bold, 9px);
         }
       }
+    }
+    :hover {
+      transform: scale(1.05);
     }
   }
   &__corp {
